@@ -1,0 +1,19 @@
+{
+  "name": "@b-frame/test-app",
+  "main": "index.js",
+	"license": "MIT",
+	"version": "0.0.0",
+	"type": "module",
+	"private": true,
+
+  "scripts": {
+    "dev": "b-frame"
+	},
+
+  "dependencies": {
+    "@b-frame/cli": "file:../cli",
+    "@b-frame/discord-adapter": "file:../discord-adapter",
+    "@b-frame/twitch-adapter": "file:../twitch-adapter",
+    "node-fetch": "^2.6.0"
+  }
+}

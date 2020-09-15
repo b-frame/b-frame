@@ -1,0 +1,17 @@
+{
+	"version": "0.0.38",
+	"npmClient": "yarn",
+	"useWorkspaces": true,
+	"command": {
+		"publish": {
+      "allowBranch": ["master"],
+			"ignoreChanges": ["*.md"]
+		}
+	},
+  "packages": [
+    "packages/cli",
+    "packages/base-adapter",
+    "packages/discord-adapter",
+    "packages/twitch-adapter"
+  ]
+}

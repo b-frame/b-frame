@@ -1,0 +1,6 @@
+.mocharc.js
+
+.nyc_output/
+coverage/
+src/
+test/
