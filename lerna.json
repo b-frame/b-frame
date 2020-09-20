@@ -4,14 +4,14 @@
 	"useWorkspaces": true,
 	"command": {
 		"publish": {
-      "allowBranch": ["master"],
+			"allowBranch": ["main"],
 			"ignoreChanges": ["*.md"]
 		}
 	},
-  "packages": [
-    "packages/cli",
-    "packages/base-adapter",
-    "packages/discord-adapter",
-    "packages/twitch-adapter"
-  ]
+	"packages": [
+		"packages/cli",
+		"packages/base-adapter",
+		"packages/discord-adapter",
+		"packages/twitch-adapter"
+	]
 }
