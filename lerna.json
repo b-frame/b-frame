@@ -1,11 +1,15 @@
 {
-	"version": "0.0.38",
+	"version": "0.0.39",
 	"npmClient": "yarn",
 	"useWorkspaces": true,
 	"command": {
 		"publish": {
-			"allowBranch": ["main"],
-			"ignoreChanges": ["*.md"]
+			"allowBranch": [
+				"main"
+			],
+			"ignoreChanges": [
+				"*.md"
+			]
 		}
 	},
 	"packages": [

@@ -1,15 +1,13 @@
 {
   "name": "@b-frame/test-app",
   "main": "index.js",
-	"license": "MIT",
-	"version": "0.0.0",
-	"type": "module",
-	"private": true,
-
+  "license": "MIT",
+  "version": "0.0.39",
+  "type": "module",
+  "private": true,
   "scripts": {
     "dev": "b-frame"
-	},
-
+  },
   "dependencies": {
     "@b-frame/cli": "file:../cli",
     "@b-frame/discord-adapter": "file:../discord-adapter",
