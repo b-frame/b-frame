@@ -1,6 +1,6 @@
 {
   "name": "@b-frame/twitch-adapter",
-  "version": "0.0.39",
+  "version": "0.0.40",
   "main": "dist/index.js",
   "repository": "git@github.com:b-frame/b-frame.git",
   "author": "Trezy <tre@trezy.com>",
@@ -11,7 +11,7 @@
     "test": "NODE_ENV=test nyc --reporter=lcovonly --reporter=text-summary mocha"
   },
   "dependencies": {
-    "@b-frame/base-adapter": "^0.0.39",
+    "@b-frame/base-adapter": "^0.0.40",
     "irc-message": "^3.0.2",
     "ws": "^7.3.1"
   }
