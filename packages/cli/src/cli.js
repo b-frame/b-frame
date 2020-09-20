@@ -24,7 +24,6 @@ import defaultConfig from 'default.config.js'
 
 
 // Local constants
-const babelConfigPath = path.resolve(process.cwd(), '.babelrc')
 const commands = {}
 const commandsPath = path.resolve(process.cwd(), 'commands')
 const configPath = path.resolve(process.cwd(), 'b-frame.config.js')
@@ -35,7 +34,6 @@ const outputPath = path.resolve(process.cwd(), '.b-frame')
 
 
 ;(async () => {
-	let babelConfig = null
 	let commandFiles = null
 	let config = null
 	let localConfig = null
@@ -44,14 +42,6 @@ const outputPath = path.resolve(process.cwd(), '.b-frame')
 		await fs.mkdir(path.resolve(outputPath, 'commands'), { recursive: true })
 	} catch (error) {
 		log('Couldn\'t create the `.b-frame` build directory.')
-		process.exit(1)
-	}
-
-	try {
-		babelConfig = await fs.readFile(babelConfigPath, 'utf8')
-		babelConfig = JSON.parse(babelConfig)
-	} catch (error) {
-		log('Couldn\'t find the default `.babelrc` file.')
 		process.exit(1)
 	}
 
@@ -82,7 +72,6 @@ const outputPath = path.resolve(process.cwd(), '.b-frame')
 		const commandPath = path.resolve(commandsPath, filename)
 
 		commands[commandName] = new Command({
-			babelConfig,
 			name: commandName,
 			outputPath,
 			path: commandPath,
