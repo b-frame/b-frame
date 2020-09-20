@@ -48,11 +48,12 @@ const outputPath = path.resolve(process.cwd(), '.b-frame')
 	try {
 		localConfig = await import(configPath)
 		chokidar.watch(configPath).on('change', () => {
-			log('Changes detected in b-frame.config.js. Restart the server to see those changes to take effect.')
+			log('Changes detected in b-frame.config.js. Restart the server to see those changes take effect.')
 		})
 	} catch (error) {
 		log(error)
-		log('No local config found.')
+		log('Couldn\'t find `b-frame.config.js`. Please create it under the project root.')
+		process.exit(1)
 	}
 
 	try {
