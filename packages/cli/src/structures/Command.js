@@ -44,7 +44,7 @@ export class Command extends EventEmitter {
 	async initialize () {
 		await this.load()
 		this.watcher = chokidar.watch(this.path)
-		this.watcher.on('change', this.load)
+		this.watcher.on('change', () => this.load())
 	}
 
 	async load () {
