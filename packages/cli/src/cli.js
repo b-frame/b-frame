@@ -56,7 +56,7 @@ const outputPath = path.resolve(process.cwd(), '.b-frame')
 	}
 
 	try {
-		commandFiles = await fs.readdir(commandsPath)
+		commandFiles = (await fs.readdir(commandsPath)).filter(filename => /\.js$/.test(filename))
 	} catch (error) {
 		log('Couldn\'t find a `commands` directory. Please create one under the project root.')
 		process.exit(1)
