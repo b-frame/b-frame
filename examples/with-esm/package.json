@@ -1,0 +1,12 @@
+{
+  "name": "b-frame-test",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "BSD-3-Clause",
+  "type": "module",
+  "private": true,
+  "dependencies": {
+    "@b-frame/cli": "^0.0.40",
+    "@b-frame/twitch-adapter": "^0.0.40"
+  }
+}
