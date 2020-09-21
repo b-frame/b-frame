@@ -85,6 +85,7 @@ const outputPath = path.resolve(process.cwd(), '.b-frame')
 		config.adapters.forEach(adapter => adapter.stop())
 		Object.values(commands).forEach(command => command.watcher.close())
 		log('Exiting...')
+		process.exit(0)
 	}
 
 	process.on('SIGINT', cleanup)
