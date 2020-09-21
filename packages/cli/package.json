@@ -1,6 +1,6 @@
 {
   "name": "@b-frame/cli",
-  "version": "0.0.40",
+  "version": "0.0.41",
   "main": "index.js",
   "repository": "git@github.com:b-frame/b-frame.git",
   "author": "Trezy <tre@trezy.com>",
