@@ -14,7 +14,6 @@ import path from 'path'
 
 // Local imports
 import { Command } from 'structures/Command.js'
-import { ConnectionManager } from 'ConnectionManager.js'
 import { log } from 'helpers/log.js'
 import { mergeConfigs } from 'helpers/mergeConfigs.js'
 import defaultConfig from 'default.config.js'
