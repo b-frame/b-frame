@@ -8,7 +8,7 @@ import WebSocket from 'ws'
 
 
 // Local imports
-import defaultConfig from 'default.config.js'
+import defaultConfig from './default.config.js'
 
 
 

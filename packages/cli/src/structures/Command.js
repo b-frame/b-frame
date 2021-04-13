@@ -1,5 +1,4 @@
 // Module imports
-import { v4 as uuid } from 'uuid'
 import babel from '@babel/core'
 import chokidar from 'chokidar'
 import fs from 'fs-extra'
@@ -11,7 +10,7 @@ import path from 'path'
 
 
 // Local imports
-import { log } from 'helpers/log.js'
+import { log } from '../helpers/log.js'
 
 
 
@@ -49,6 +48,10 @@ export class Command extends EventEmitter {
 
 	async load () {
 		log(`Loading \`${this.name}\` command...`)
+
+		this.commandFunction = null
+		this.config = null
+
 		try {
 			// await new Promise((resolve, reject) => {
 			// 	babel.transformFile(this.path, this.babelConfig, async (error, result) => {
@@ -63,8 +66,10 @@ export class Command extends EventEmitter {
 			// 	})
 			// })
 			// delete require.cache[this.outputPath]
-			this.commandFunction = null
-			this.commandFunction = (await import(`${this.path}?${uuid()}`)).default
+			const commandModule = await import(`${this.path}?update=${Date.now()}`)
+			this.commandFunction = commandModule.default
+			this.config = commandModule.config || {}
+			this.getArgs = commandModule.getArgs || ((argsString) => argsString)
 			log(`Finished loading \`${this.name}\` command.`)
 			this.emit('loaded')
 		} catch (error) {
@@ -85,6 +90,7 @@ export class Command extends EventEmitter {
 		super()
 
 		this.commandFunction = null
+		this.config = null
 		this.options = options
 		this.initialize()
 	}
@@ -92,7 +98,11 @@ export class Command extends EventEmitter {
 	async execute (options) {
 		const executor = async () => {
 			this.beforeExecute(options)
-			const results = await this.commandFunction(options)
+			const args = await this.getArgs(options)
+			const results = await this.commandFunction({
+				...options,
+				args,
+			})
 			this.afterExecute({
 				...options,
 				results,

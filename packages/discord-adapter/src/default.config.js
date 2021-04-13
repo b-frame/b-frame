@@ -3,5 +3,9 @@ export default {
 		token: 'definitely-a-token',
 	},
 
+	intents: ['GUILDS', 'GUILD_MESSAGES'],
+
 	prefix: '!',
+
+	shouldRegisterSlashCommands: true,
 }

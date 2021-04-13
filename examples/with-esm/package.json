@@ -6,7 +6,7 @@
   "type": "module",
   "private": true,
   "dependencies": {
-    "@b-frame/cli": "^0.0.40",
-    "@b-frame/twitch-adapter": "^0.0.40"
+    "@b-frame/cli": "workspace:*",
+    "@b-frame/twitch-adapter": "workspace:*"
   }
 }

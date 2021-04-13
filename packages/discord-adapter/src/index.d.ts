@@ -5,7 +5,11 @@ export class DiscordAdapter {
 				token: string,
 			},
 
+			intents: string | number | string[] | number[],
+
 			prefix: string | string[],
+
+			shouldRegisterSlashCommands: boolean,
 		}
 	)
 }

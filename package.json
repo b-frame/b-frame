@@ -1,27 +1,20 @@
 {
 	"name": "root",
 	"private": true,
-
 	"scripts": {
-		"bootstrap": "lerna bootstrap",
-		"bootstrap:dev": "lerna bootstrap --force-local",
-
-		"build:cli": "lerna run build --scope @b-frame/cli",
-		"build:base-adapter": "lerna run build --scope @b-frame/base-adapter",
-		"build:discord-adapter": "lerna run build --scope @b-frame/discord-adapter",
-		"build:twitch-adapter": "lerna run build --scope @b-frame/twitch-adapter",
-		"build": "lerna run build --parallel",
+		"build": "yarn build:cli && yarn build:base-adapter && yarn build:discord-adapter && yarn build:twitch-adapter",
+		"build:cli": "yarn workspace @b-frame/cli build",
+		"build:base-adapter": "yarn workspace @b-frame/base-adapter build",
+		"build:discord-adapter": "yarn workspace @b-frame/discord-adapter build",
+		"build:twitch-adapter": "yarn workspace @b-frame/twitch-adapter build",
 		"cz": "cz",
-		"dev": "lerna run dev",
-
-		"link": "lerna link",
-
-		"test:cli": "lerna run test --scope @b-frame/cli",
-		"test:discord-adapter": "lerna run test --scope @b-frame/discord-adapter",
-		"test:twitch-adapter": "lerna run test --scope @b-frame/twitch-adapter",
-		"test": "lerna run test --parallel"
+		"dev": "yarn workspace test-app dev",
+		"test": "yarn test:cli && yarn test:base-adapter && yarn test:discord-adapter && yarn test:twitch-adapter",
+		"test:base-adapter": "yarn workspace @b-frame/base-adapter test",
+		"test:cli": "yarn workspace @b-frame/cli test",
+		"test:discord-adapter": "yarn workspace @b-frame/discord-adapter test",
+		"test:twitch-adapter": "yarn workspace @b-frame/twitch-adapter test"
 	},
-
 	"workspaces": [
 		"packages/cli",
 		"packages/base-adapter",
@@ -29,31 +22,10 @@
 		"packages/twitch-adapter",
 		"packages/test-app"
 	],
-
 	"devDependencies": {
-		"@babel/cli": "^7.10.5",
-		"@babel/core": "^7.11.1",
-		"@babel/node": "^7.10.5",
-		"@babel/plugin-proposal-class-properties": "^7.10.4",
-		"@babel/preset-env": "^7.11.0",
-		"@babel/register": "^7.10.5",
 		"@commitlint/cli": "^11.0.0",
 		"@commitlint/config-conventional": "^11.0.0",
-		"babel-plugin-module-resolver": "^4.0.0",
-		"chai": "^4.2.0",
 		"commitizen": "^4.2.1",
-		"coveralls": "^3.1.0",
-		"cz-conventional-changelog": "^3.3.0",
-		"husky": "^4.3.0",
-		"lerna": "^3.22.1",
-		"mocha": "^8.1.1",
-		"nyc": "^15.1.0",
-		"sinon": "^9.0.3"
-	},
-
-	"dependencies": {
-		"@b-frame/cli": "file:packages/cli",
-		"@b-frame/discord-adapter": "file:packages/discord-adapter",
-		"@b-frame/twitch-adapter": "file:packages/twitch-adapter"
+		"husky": "^4.3.0"
 	}
 }

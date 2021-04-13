@@ -1,16 +1,18 @@
 {
-  "name": "@b-frame/test-app",
+  "name": "test-app",
   "main": "index.js",
   "version": "0.0.42",
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "b-frame"
+    "dev": "b-frame",
+    "debug": "nodemon --inspect ../../node_modules/.bin/b-frame"
   },
   "dependencies": {
-    "@b-frame/cli": "file:../cli",
-    "@b-frame/discord-adapter": "file:../discord-adapter",
-    "@b-frame/twitch-adapter": "file:../twitch-adapter",
-    "node-fetch": "^2.6.0"
+    "@b-frame/cli": "workspace:*",
+    "@b-frame/discord-adapter": "workspace:*",
+    "@b-frame/twitch-adapter": "workspace:*",
+    "node-fetch": "^2.6.0",
+    "nodemon": "^2.0.7"
   }
 }

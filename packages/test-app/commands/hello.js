@@ -3,3 +3,9 @@ export default async function project (options) {
     say: 'Hello, world. 👋🏻',
   }
 }
+
+export const config = {
+	discord: {
+		description: 'Ohai!',
+	},
+}

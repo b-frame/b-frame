@@ -7,7 +7,9 @@ import fetch from 'node-fetch'
 
 export default async function (options) {
   const {
-    argsString: query,
+    args: {
+			query,
+		},
     message,
   } = options
   const response = {
@@ -34,9 +36,51 @@ export default async function (options) {
         break
     }
 
-    response.say = `🔮 The Magic 8-ball says... ${magic.answer}. ${emoji}`
+		// if () {}
+		console.log(options)
+
+    response.say = `> ${query}\n\n🔮 The Magic 8-ball says... ${magic.answer}. ${emoji}`
     response.success = true
   }
 
   return response
+}
+
+export const config = {
+	discord: {
+		description: 'Ask the Magic 8-ball a question!',
+		options: [
+			{
+				name: 'query',
+				description: 'Your question for the Magic 8-ball',
+				type: 'STRING',
+				required: true,
+			},
+		],
+	},
+}
+
+function discordOptionsReducer (accumulator, option) {
+	const {
+		name,
+		value,
+	} = option
+
+	accumulator[name] = value
+
+	return accumulator
+}
+
+function parseDiscordOptions (optionsList) {
+	return optionsList.reduce(discordOptionsReducer, {})
+}
+
+export function getArgs (options) {
+	if (options.isInteraction) {
+		return parseDiscordOptions(options.interaction.options)
+	}
+
+	return {
+		query: options.argsString,
+	}
 }

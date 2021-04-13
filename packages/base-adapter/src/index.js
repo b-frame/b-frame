@@ -6,7 +6,7 @@ import EventEmitter from 'events'
 
 
 // Local imports
-import defaultConfig from 'default.config.js'
+import defaultConfig from './default.config.js'
 
 
 
@@ -60,11 +60,16 @@ export class BaseAdapter extends EventEmitter {
 
 	getCommandOptions (commandName, args, message, options) {
 		return {
+			adapterType: this.name,
 			args,
 			commandName,
 			message,
 			...options,
 		}
+	}
+
+	log (message, level = 'info') {
+		return console[level](`[${this.name}]`, message)
 	}
 
 	parseMessage (message, options) {
@@ -103,10 +108,22 @@ export class BaseAdapter extends EventEmitter {
 		this.disconnect()
 	}
 
+
+
+
+
+	/***************************************************************************\
+		Getters
+	\***************************************************************************/
+
 	get config () {
 		return this._config || (this._config = {
 			...defaultConfig,
 			...this.options,
 		})
+	}
+
+	get name () {
+		return this.constructor.name
 	}
 }

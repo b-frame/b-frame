@@ -13,10 +13,10 @@ import path from 'path'
 
 
 // Local imports
-import { Command } from 'structures/Command.js'
-import { log } from 'helpers/log.js'
-import { mergeConfigs } from 'helpers/mergeConfigs.js'
-import defaultConfig from 'default.config.js'
+import { Command } from './structures/Command.js'
+import { log } from './helpers/log.js'
+import { mergeConfigs } from './helpers/mergeConfigs.js'
+import defaultConfig from './default.config.js'
 
 
 
@@ -80,18 +80,23 @@ const outputPath = path.resolve(process.cwd(), '.b-frame')
 
 	config = mergeConfigs(defaultConfig, localConfig)
 
-	const cleanup = () => {
+	const cleanup = async () => {
 		log('Cleaning up...')
-		config.adapters.forEach(adapter => adapter.stop())
+
+		const adapterPromises = []
+		config.adapters.forEach(adapter => adapterPromises.push(adapter.stop()))
+		await Promise.all(adapterPromises)
+
 		Object.values(commands).forEach(command => command.watcher.close())
+
 		log('Exiting...')
+
 		process.exit(0)
 	}
 
 	process.on('SIGINT', cleanup)
-	process.on('SIGUSR1', cleanup)
-	process.on('SIGUSR2', cleanup)
-	process.on('uncaughtException', cleanup)
+	process.on('SIGTERM', () => process.exit(0))
+	process.on('uncaughtException', console.error)
 
 	config.adapters.forEach(adapter => {
 		log(`Starting adapter: ${adapter.constructor.name}`)
